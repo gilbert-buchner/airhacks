@@ -8,12 +8,14 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeThat;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -36,6 +38,7 @@ public class HelloTest {
 
     @Before
     public void init() {
+        //System.setProperty("server.home", "wf");
         this.cut = new Hello();
         this.words = Arrays.asList("java", "javaee", "june");
     }
@@ -87,6 +90,14 @@ public class HelloTest {
                 and(containsString("very"))
         );
         this.cut.exceptional();
+    }
+
+    @Test
+    public void conditionalTest() {
+        assumeThat(System.getProperty("server.home"), is("wf"));
+        String stage = System.getProperty("stage");
+        assertNotNull(stage);
+
     }
 
 }
