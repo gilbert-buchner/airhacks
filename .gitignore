@@ -1,3 +1,9 @@
 repo.git.tar
 target/
 .DS_Store
+/hello-junit/nbproject/
+/hello-javaee-st/nbproject/
+/hello-javaee/nbproject/
+/hello-javaee/insurance/
+/hello-javaee/derby.log
+/log-injector/nbproject/
