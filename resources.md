@@ -22,3 +22,8 @@ http://fitnesse.org
 # Code Quality
 
 http://www.sonarqube.org
+
+
+# Plugins
+
+http://www.adam-bien.com/roller/abien/entry/building_plug_in_with_java
