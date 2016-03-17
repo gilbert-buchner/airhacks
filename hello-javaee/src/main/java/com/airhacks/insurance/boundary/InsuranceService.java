@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * See: http://www.adam-bien.com/roller/abien/entry/how_to_reuse_java_ee for
+ * hard to test business logic
  *
  * @author airhacks.com
  */
