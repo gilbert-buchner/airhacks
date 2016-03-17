@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -21,13 +23,14 @@ public class InsuranceServiceTest {
     @Before
     public void init() {
         this.cut = new InsuranceService();
-        this.cut.fetcher = new InsuranceDataFetcher();
+        this.cut.fetcher = mock(InsuranceDataFetcher.class);
     }
 
     @Test
     public void negativeAmount() {
+        when(this.cut.fetcher.amount()).thenReturn(-1l);
         exceptionRule.expect(IllegalStateException.class);
-        exceptionRule.expectMessage(containsString("negative"));
+        exceptionRule.expectMessage(containsString("less"));
         this.cut.insurances();
     }
 
