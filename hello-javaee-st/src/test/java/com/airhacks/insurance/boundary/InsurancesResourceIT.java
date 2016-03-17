@@ -30,6 +30,7 @@ public class InsurancesResourceIT {
         assertThat(response.getStatus(), is(200));
         String result = response.readEntity(String.class);
         assertThat(result, is("vehicle"));
+        System.out.println("result = " + result);
     }
 
 }
