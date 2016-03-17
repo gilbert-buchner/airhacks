@@ -1,5 +1,6 @@
 package com.airhacks;
 
+import static com.airhacks.JavaMatcher.isJavaCompatible;
 import java.util.Arrays;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.both;
@@ -21,10 +22,12 @@ import org.junit.Test;
 public class HelloTest {
 
     Hello cut;
+    List<String> words;
 
     @Before
     public void init() {
         this.cut = new Hello();
+        this.words = Arrays.asList("java", "javaee", "june");
     }
 
     @Test
@@ -37,12 +40,17 @@ public class HelloTest {
 
     @Test
     public void list() {
-        List<String> words = Arrays.asList("java", "javaee", "june");
         assertThat(words, hasItem("java"));
         assertThat(words, both(hasItem("java")).and(hasItem("june")));
         assertThat(words, hasItems("java", "javaee"));
         assertThat(words, everyItem(startsWith("j")));
         assertThat(words, everyItem(not(startsWith(".net"))));
+    }
+
+    @Test
+    public void customMatcher() {
+        assertThat("java", isJavaCompatible());
+        assertThat(".net", new JavaMatcher("should be java compatible"));
     }
 
 }
