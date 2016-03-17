@@ -2,6 +2,7 @@ package com.airhacks.insurance.boundary;
 
 import com.airhacks.insurance.control.InsuranceDataFetcher;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,6 +33,13 @@ public class InsuranceServiceTest {
         exceptionRule.expect(IllegalStateException.class);
         exceptionRule.expectMessage(containsString("less"));
         this.cut.insurances();
+    }
+
+    @Test
+    public void validAmount() {
+        when(this.cut.fetcher.amount()).thenReturn(1l);
+        String insurances = this.cut.insurances();
+        assertThat(insurances, containsString(","));
     }
 
 }
