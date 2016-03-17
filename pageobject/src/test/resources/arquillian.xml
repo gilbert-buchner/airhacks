@@ -5,7 +5,7 @@
 
     <extension qualifier="webdriver">
         <!--<property name="browser">phantomjs</property>-->
-        <property name="browser">chrome</property>
+        <property name="browser">phantomjs</property>
     </extension>
     <extension name="graphene">
         <property name="url">http://localhost:8080/pageobject/</property>
