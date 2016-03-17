@@ -79,7 +79,10 @@ public class HelloTest {
     @Test
     public void exceptionWithMessage() {
         this.expected.expect(RuntimeException.class);
-        this.expected.expectMessage(both(containsString("unstable")).and(containsString("very")));
+        this.expected.expectMessage(
+                both(containsString("unstable")).
+                and(containsString("very"))
+        );
         this.cut.exceptional();
     }
 
