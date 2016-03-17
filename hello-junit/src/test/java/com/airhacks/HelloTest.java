@@ -15,7 +15,9 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -25,6 +27,9 @@ public class HelloTest {
 
     Hello cut;
     List<String> words;
+
+    @Rule
+    public ExpectedException expected = ExpectedException.none();
 
     @Before
     public void init() {
@@ -69,6 +74,13 @@ public class HelloTest {
             assertTrue(ex instanceof RuntimeException);
             assertThat(ex.getMessage(), both(containsString("unstable")).and(containsString("very")));
         }
+    }
+
+    @Test
+    public void exceptionWithMessage() {
+        this.expected.expect(RuntimeException.class);
+        this.expected.expectMessage(both(containsString("unstable")).and(containsString("very")));
+        this.cut.exceptional();
     }
 
 }
