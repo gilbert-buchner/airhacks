@@ -1,8 +1,10 @@
 package com.airhacks.insurance.boundary;
 
+import javax.json.JsonObject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,10 +28,10 @@ public class InsurancesResourceIT {
 
     @Test
     public void insurances() {
-        Response response = this.tut.request().get();
+        Response response = this.tut.request(APPLICATION_JSON).get();
         assertThat(response.getStatus(), is(200));
-        String result = response.readEntity(String.class);
-        assertThat(result, is("vehicle"));
+        JsonObject result = response.readEntity(JsonObject.class);
+        assertThat(result.getString("type"), is("vehicle"));
         System.out.println("result = " + result);
     }
 
