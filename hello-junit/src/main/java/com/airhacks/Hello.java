@@ -1,5 +1,7 @@
 package com.airhacks;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author airhacks.com
@@ -7,7 +9,7 @@ package com.airhacks;
 public class Hello {
 
     public String message() {
-        return "hello world";
+        return "hello world " + LocalDate.now().toString();
     }
 
 }
