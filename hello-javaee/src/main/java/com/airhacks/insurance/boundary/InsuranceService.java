@@ -14,7 +14,7 @@ import javax.inject.Inject;
 public class InsuranceService {
 
     @Inject
-    InsuranceDataFetcher fetcher;
+    private InsuranceDataFetcher fetcher;
 
     public String insurances() {
         List<InsuranceData> amount = fetcher.amount();
