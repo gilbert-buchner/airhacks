@@ -1,6 +1,8 @@
 package com.airhacks.insurance.boundary;
 
 import com.airhacks.insurance.control.InsuranceDataFetcher;
+import com.airhacks.insurance.entity.InsuranceData;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -15,8 +17,8 @@ public class InsuranceService {
     InsuranceDataFetcher fetcher;
 
     public String insurances() {
-        long amount = fetcher.amount();
-        if (amount < 0) {
+        List<InsuranceData> amount = fetcher.amount();
+        if (amount.isEmpty()) {
             throw new IllegalStateException("Amount less than zero!");
         }
         return "vehicle, health " + amount;

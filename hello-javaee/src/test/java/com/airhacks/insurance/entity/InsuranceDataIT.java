@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
- * @author airhacks.com
+ * For JDBC see:
+ * https://github.com/AdamBien/enhydrator/blob/master/enhydrator/src/test/java/com/airhacks/enhydrator/CopyTableIT.java
  */
 public class InsuranceDataIT {
 

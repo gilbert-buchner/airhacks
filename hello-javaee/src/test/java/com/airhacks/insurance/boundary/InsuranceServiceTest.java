@@ -1,6 +1,9 @@
 package com.airhacks.insurance.boundary;
 
 import com.airhacks.insurance.control.InsuranceDataFetcher;
+import com.airhacks.insurance.entity.InsuranceData;
+import java.util.ArrayList;
+import java.util.List;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
@@ -29,7 +32,7 @@ public class InsuranceServiceTest {
 
     @Test
     public void negativeAmount() {
-        when(this.cut.fetcher.amount()).thenReturn(-1l);
+        when(this.cut.fetcher.amount()).thenReturn(new java.util.ArrayList<>());
         exceptionRule.expect(IllegalStateException.class);
         exceptionRule.expectMessage(containsString("less"));
         this.cut.insurances();
@@ -37,9 +40,11 @@ public class InsuranceServiceTest {
 
     @Test
     public void validAmount() {
-        when(this.cut.fetcher.amount()).thenReturn(1l);
-        String insurances = this.cut.insurances();
-        assertThat(insurances, containsString(","));
+        List<InsuranceData> insurances = new ArrayList<>();
+        insurances.add(new InsuranceData(21));
+        when(this.cut.fetcher.amount()).thenReturn(insurances);
+        String result = this.cut.insurances();
+        assertThat(result, containsString(","));
     }
 
 }
