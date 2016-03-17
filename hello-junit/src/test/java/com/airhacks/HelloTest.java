@@ -12,6 +12,8 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,7 +52,23 @@ public class HelloTest {
     @Test
     public void customMatcher() {
         assertThat("java", isJavaCompatible());
-        assertThat(".net", new JavaMatcher("should be java compatible"));
+        //assertThat(".net", new JavaMatcher("should be java compatible"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void exception() {
+        this.cut.exceptional();
+    }
+
+    @Test
+    public void boilerplateExceptionWithMessage() {
+        try {
+            this.cut.exceptional();
+            fail("Expecting exception!");
+        } catch (Exception ex) {
+            assertTrue(ex instanceof RuntimeException);
+            assertThat(ex.getMessage(), both(containsString("unstable")).and(containsString("very")));
+        }
     }
 
 }
