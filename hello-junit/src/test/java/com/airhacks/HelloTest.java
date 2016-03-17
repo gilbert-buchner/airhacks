@@ -31,6 +31,9 @@ public class HelloTest {
     @Rule
     public ExpectedException expected = ExpectedException.none();
 
+    @Rule
+    public HelloTestRule rule = HelloTestRule.create();
+
     @Before
     public void init() {
         this.cut = new Hello();
