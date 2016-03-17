@@ -8,7 +8,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -25,10 +25,10 @@ public class LogProducerIT {
     LogTestSupport lts;
 
     @Deployment
-    public static WebArchive create() {
-        return ShrinkWrap.create(WebArchive.class).
+    public static JavaArchive create() {
+        return ShrinkWrap.create(JavaArchive.class).
                 addClasses(Log.class, LogProducer.class, LogTestSupport.class).
-                addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Test
