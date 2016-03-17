@@ -8,6 +8,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +29,7 @@ public class InsurancesResourceIT {
 
     @Test
     public void insurances() {
+        fail("I'm lazy");
         Response response = this.tut.request(APPLICATION_JSON).get();
         assertThat(response.getStatus(), is(200));
         JsonObject result = response.readEntity(JsonObject.class);
