@@ -20,6 +20,10 @@ public class HelloTestRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 System.out.println("Before: " + description.getMethodName());
+                if (description.getAnnotation(Sunny.class) != null) {
+                    System.out.println(" skipping method: " + description.getMethodName());
+                    return;
+                }
                 base.evaluate();
                 System.out.println("After: " + description.getMethodName());
             }

@@ -97,7 +97,14 @@ public class HelloTest {
         assumeThat(System.getProperty("server.home"), is("wf"));
         String stage = System.getProperty("stage");
         assertNotNull(stage);
+    }
 
+    @Test
+    @Sunny
+    public void skipMe() {
+        String msg = "Should not be executed";
+        System.out.println(msg);
+        fail(msg);
     }
 
 }
